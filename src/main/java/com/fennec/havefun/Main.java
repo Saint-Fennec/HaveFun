@@ -2,18 +2,14 @@ package com.fennec.havefun;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
-import org.bukkit.Material;
 import org.bukkit.World;
-import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.player.PlayerRecipeDiscoverEvent;
-import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.bukkit.util.EulerAngle;
 
 public class Main extends JavaPlugin implements Listener {
 
@@ -27,11 +23,14 @@ public class Main extends JavaPlugin implements Listener {
     @EventHandler
     public void onBreak(BlockBreakEvent q) {
         Player player = q.getPlayer();
-        player.sendMessage("Did you break something?");
-        Location l = player.getLocation();
-        World world = Bukkit.getWorld("world");
-        world.spawnEntity(l, EntityType.PRIMED_TNT);
-        final int fusingTimeInSeconds = 1;
+        // Check if player is Op
+        if (!player.isOp()) {
+            player.sendMessage("Did you break something?");
+            Location l = player.getLocation();
+            World world = Bukkit.getWorld("world");
+            world.spawnEntity(l, EntityType.PRIMED_TNT);
+            final int fusingTimeInSeconds = 1;
+        }
     }
 
     @EventHandler
