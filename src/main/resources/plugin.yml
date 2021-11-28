@@ -1,0 +1,6 @@
+name: HaveFun
+version: '${project.version}'
+main: com.fennec.havefun.Main
+api-version: 1.17
+authors: [ Saint_Fennec ]
+description: An amazing plugin to play with your friends.
